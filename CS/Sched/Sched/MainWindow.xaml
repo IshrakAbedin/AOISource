@@ -1,0 +1,99 @@
+﻿<Window x:Class="Sched.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sched"
+        mc:Ignorable="d"
+        Title="AOI || The AI Time Schedular" Height="380" Width="750" MinHeight="380" MinWidth="750" Icon="Sched.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0,0,0,0" Background="#FF00A7FD">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="0,0,0,0" Grid.Row="0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ListBox_Work" Grid.ColumnSpan="1" Grid.Column="0" Margin="1,1,1,1" Background="#FF00A7FD" SelectionChanged="ListBox_Work_SelectionChanged" BorderBrush="White" Foreground="White" FontWeight="Bold" FontStyle="Italic"/>
+                    <Button x:Name="Button_AddWork" Content="ADD" Grid.Column="1" Margin="0,0,9.8,10" HorizontalAlignment="Right" Width="75" Height="19" VerticalAlignment="Bottom" Click="Button_AddWork_Click" Background="#FF00A7FD" BorderBrush="White" Foreground="White" FontWeight="Bold" Panel.ZIndex="5"/>
+                    <Button x:Name="Button_RemoveWork" Content="REMOVE" Grid.Column="1" Margin="0,0,89.8,10" HorizontalAlignment="Right" Width="75" Height="19" VerticalAlignment="Bottom" Click="Button_RemoveWork_Click" Background="#FF00A7FD" Foreground="White" BorderBrush="White" FontWeight="Bold" Panel.ZIndex="19"/>
+                    <Label Content="WORKS" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF00A7FD"/>
+                    <Label Content="NAME" Grid.Column="1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <Label Content="ENERGY CONSUMPTION" Grid.Column="1" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <Label Content="DURATION" Grid.Column="1" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <Label Content="PRIORITY" Grid.Column="1" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <TextBox x:Name="TextBox_WorkName" Grid.Column="1" Height="23" Margin="167,39,9.8,0" TextWrapping="Wrap" VerticalAlignment="Top" CaretBrush="#FF00A7FD"/>
+                    <TextBox x:Name="TextBox_WorkEnergy" Grid.Column="1" Height="23" Margin="167,65,9.8,0" TextWrapping="Wrap" VerticalAlignment="Top" CaretBrush="#FF00A7FD" Panel.ZIndex="1"/>
+                    <TextBox x:Name="TextBox_WorkDuration" Grid.Column="1" Height="23" Margin="167,90,9.8,0" TextWrapping="Wrap" VerticalAlignment="Top" CaretBrush="#FF00A7FD" Panel.ZIndex="3"/>
+                    <Slider x:Name="Slider_WorkPriority" Grid.Column="1" Margin="167,118,9.8,0" VerticalAlignment="Top" RenderTransformOrigin="-0.35,-0.148" Minimum="0" Maximum="9" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Foreground="#FF00A7FD" BorderBrush="#FF00A7FD" Panel.ZIndex="4"/>
+                    <Label Content="{Binding ElementName=Slider_WorkPriority, Path=Value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Margin="146,114,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <Button x:Name="Button_Rectify" Content="RECTIFY WORKS" Grid.Column="1" Margin="10,0,0,10.4" Height="19" VerticalAlignment="Bottom" Click="Button_Rectify_Click" Background="#FF00A7FD" Foreground="White" BorderBrush="White" FontWeight="Bold" HorizontalAlignment="Left" Width="101" Panel.ZIndex="21"/>
+                </Grid>
+                <Grid Margin="0,0,0,0" Grid.Row="1" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ListBox_Recr" Grid.ColumnSpan="1" Grid.Column="0" Margin="1,1,1,1" Background="#FF00A7FD" SelectionChanged="ListBox_Recr_SelectionChanged" BorderBrush="White" FontWeight="Bold" FontStyle="Italic" Foreground="White"/>
+                    <Button x:Name="Button_AddRecr" Content="ADD" Grid.Column="1" Margin="0,0,9.8,10.2" HorizontalAlignment="Right" Width="72" Height="19" VerticalAlignment="Bottom" Click="Button_AddRecr_Click" Background="#FF00A7FD" BorderBrush="White" Foreground="White" FontWeight="Bold" Panel.ZIndex="10"/>
+                    <Button x:Name="Button_RemoveRecr" Content="REMOVE" Grid.Column="1" Margin="0,0,86.8,10.2" HorizontalAlignment="Right" Width="75" Height="19" VerticalAlignment="Bottom" Click="Button_RemoveRecr_Click" Background="#FF00A7FD" Foreground="White" BorderBrush="White" FontWeight="Bold" Panel.ZIndex="20"/>
+                    <Label Content="RECREATIONS" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF00A7FD"/>
+                    <Label Content="NAME" Grid.Column="1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <Label Content="ENERGY RESTORATION" Grid.Column="1" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Foreground="#FF00A7FD"/>
+                    <TextBox x:Name="TextBox_RecrName" Grid.Column="1" Height="23" Margin="167,36,9.8,0" TextWrapping="Wrap" VerticalAlignment="Top" CaretBrush="#FF00A7FD" Panel.ZIndex="6"/>
+                    <TextBox x:Name="TextBox_RecrEnergy" Grid.Column="1" Height="23" Margin="167,62,9.8,0" TextWrapping="Wrap" VerticalAlignment="Top" CaretBrush="Black" Panel.ZIndex="7"/>
+                </Grid>
+            </Grid>
+            <Label Content="SETTINGS" Margin="10.2,10,0,0" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Left" Width="73" Height="26" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="STARTING ENERGY" Margin="10.2,36,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="122" Height="26" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="QUANTA" Margin="10.2,62,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="73" Height="26" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="START TIME" Margin="10.2,88,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="87" Height="26" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="END TIME" Margin="10.2,114,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="87" Height="26" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="TextBox_StartingEnergy" Grid.Column="1" Height="23" Margin="135.2,39,9.6,0" Text="100" TextWrapping="Wrap" VerticalAlignment="Top" Panel.ZIndex="9"/>
+            <TextBox x:Name="TextBox_Quanta" Grid.Column="1" Height="23" Margin="135.2,65,9.6,0" Text="15" TextWrapping="Wrap" VerticalAlignment="Top" Panel.ZIndex="10"/>
+            <TextBox x:Name="TextBox_SHr" Grid.Column="1" Height="23" Margin="135.2,91,0,0" Text="11" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="23" Panel.ZIndex="11"/>
+            <TextBox x:Name="TextBox_SMin" Grid.Column="1" Height="23" Margin="163.2,91,0,0" Text="00" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" Panel.ZIndex="12"/>
+            <TextBox x:Name="TextBox_EHr" Grid.Column="1" Height="23" Margin="135.2,117,0,0" Text="11" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="23" Panel.ZIndex="14"/>
+            <TextBox x:Name="TextBox_EMin" Grid.Column="1" Height="23" Margin="163.2,117,0,0" Text="00" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" Panel.ZIndex="15"/>
+            <ComboBox x:Name="Combo_S" Grid.Column="1" Margin="190,92,10,0" VerticalAlignment="Top" BorderBrush="White" Background="White" Panel.ZIndex="13"/>
+            <ComboBox x:Name="Combo_E" Grid.Column="1" Margin="190,117,10,0" VerticalAlignment="Top" BorderBrush="White" Background="White" Panel.ZIndex="16"/>
+            <Button x:Name="Button_Run" Content="RUN" Grid.Column="1" Margin="0,0,9.6,9.2" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="Button_Run_Click" Foreground="#FF00A7FD" BorderBrush="#FF00A7FD" Background="White" FontWeight="Bold" Panel.ZIndex="18"/>
+            <Button x:Name="Button_Set" Content="SET" Grid.Column="1" Margin="0,145,9.6,0" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Top" Click="Button_Set_Click" Foreground="#FF00A7FD" BorderBrush="#FF00A7FD" Background="White" FontWeight="Bold" Panel.ZIndex="17"/>
+            <Image Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,10.2" Width="138" Height="138" VerticalAlignment="Bottom" Source="Sched.png"/>
+            <Label Content="AOI" Grid.Column="1" HorizontalAlignment="Left" Margin="96,0,0,31.2" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" Background="{x:Null}" Foreground="#FF00A7FD" Height="34" VerticalAlignment="Bottom" FontSize="24" FontFamily="Arial Black">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Button x:Name="Button_Help" Content="?" Grid.Column="1" Margin="0,13,10,0" HorizontalAlignment="Right" Width="23" Height="20" VerticalAlignment="Top" Click="Button_Help_Click" Foreground="#FF00A7FD" BorderBrush="#FF00A7FD" Background="White" FontWeight="Bold" Panel.ZIndex="22"/>
+            <Label Content="MINIMUM" Margin="159,0,0,104.2" Grid.Column="1" HorizontalAlignment="Left" Width="75" Foreground="White" Height="26" VerticalAlignment="Bottom"/>
+            <Label Content="DURATION" Margin="159,0,0,91.2" Grid.Column="1" HorizontalAlignment="Left" Width="81" Foreground="White" Height="26" VerticalAlignment="Bottom" RenderTransformOrigin="0.595,0.485"/>
+            <Label x:Name="Label_MinH" Content="0HR" Margin="159,0,-1,57.2" Grid.Column="1" HorizontalAlignment="Left" Width="90" Foreground="White" Height="48" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="24" FontFamily="Segoe UI Black"/>
+            <Label x:Name="Label_MinM" Content="0MIN" Margin="159,0,0,40.2" Grid.Column="1" HorizontalAlignment="Left" Width="75" Foreground="White" Height="38" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black"/>
+        </Grid>
+        <ScrollViewer Margin="1,1,1,1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="TextBlock_Log" TextWrapping="Wrap" Text="Log" Foreground="#FF00A7FD" FontStyle="Italic"/>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule</title>
+    <link rel="stylesheet" href="routineStyle.css">
+</head>
+
+<body>
+<script>
+    function printFunction() {
+    window.print();
+    }
+</script>
