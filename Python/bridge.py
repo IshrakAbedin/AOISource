@@ -152,6 +152,8 @@ def read_system(inputfile):
     slots = int(time / quanta)
     for i in range(len(duration)):
         duration[i] = int(duration[i] / quanta)
+        if duration[i] < quanta:
+            duration[i] = quanta
     for i in range(len(duration)):
         energies[i] = int(energies[i] / duration[i])
 
