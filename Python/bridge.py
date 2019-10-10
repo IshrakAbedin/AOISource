@@ -76,6 +76,8 @@ def input_system():
     slots = int(time / quanta)
     for i in range(len(duration)):
         duration[i] = int(duration[i] / quanta)
+        if duration < quanta:
+            duration = quanta
     for i in range(len(duration)):
         energies[i] = int(energies[i] / duration[i])
 
@@ -142,7 +144,6 @@ def read_system(inputfile):
             slots = 20
             time = 0
         else:
-            print(inputs[0])
             show_help()
     
     activities = works + recrs
@@ -221,7 +222,7 @@ def tabular_output(tasklist, quanta, stime):
     webbrowser.open('file://' + path.realpath('schedule.html'))
 
 def show_help():
-    print('This is help text')
+    print('Please read Manual.txt')
 
 def main():
     activities = []

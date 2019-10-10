@@ -1,0 +1,40 @@
+AOI is an application that auto calculates a daily routine given a set of tasks or works and recreational activities. Having MiniZinc solver in heart, the main idea is that works will have priority and consume energy while recreational activities restores energy. Given a starting energy. the schedular will make a schedule in such a way that at any moment of time, energy never goes below zero. It will always fit all the works and every recreational activities at least once or it will fail at making the schedule. Python helps to format the input of MiniZinc and auto formats every input.
+
+USING PYTHON 'bridge.py'
+--------------------------------------------------------------------
+bridge.py serves as the driver for Routine.mzn, which is the real solver script. Bridge converts all the inputs to integers and the passes it to Routine.mzn which returns the routine as an array of integers. Time is divided into quanta. Quanta is in minutes and taking smaller quanta will make the data more granular while making the computation more expense. So choosing a proper quanta is necessary for maintaining balance between time and granularity. Python auto formats input times and energies based on quanta.
+
+PYTHON version used: 3.7
+
+REQUIRED PYTHON LIBRARIES:
+pymzn, prettytable
+
+HOW TO USE:
+There are two ways of running the Python bridge. First is running bridge.py directly and then entering command. Second is writing all the commands in a text file and then passing that text file as command line argument to bridge.py. For example,
+[$python bridge.py input.txt]
+
+COMMAND LIST:
+
+For adding work,
+[work/wrk workName totalWorkEnergy workDuration priority]
+
+For adding recreational activity,
+[recr/rec recreationName perQuantaEnergyRestoration]
+
+For adding starting energy,
+[nrg/ener/energy/enrg energyAmount]
+
+For adding quanta,
+[quanta/qnta quantaAmount]
+
+For adding starting time,
+[stime tt:ttam/pm]
+
+For adding ending time,
+[etime tt:ttam/pm]
+
+To start the calculation,
+[run]
+
+To reset every input,
+[clear]
