@@ -56,4 +56,4 @@ USING DOTNET GUI APPLICATION
 ----------------------------------------------------------------------
 The DOTNET GUI application takes the same input but through a GUI form and then passes it to bridge.py. However, the application can format the inputs itself, show the minimum required time and let review and modify tasks. For running in *Windows*, a precompiled version of the application can be found at https://github.com/IshrakAbedin/AOIArtifact.
 
-** GUI is not up to date with the latest python code and solver with Min/Max work duration**
+**GUI is not up to date with the latest python code and solver with Min/Max work duration**
