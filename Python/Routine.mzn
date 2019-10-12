@@ -11,9 +11,10 @@ set of int: slots = 1..num_slot;
 set of int: works = 1..num_work;
 set of int: nrgs = (num_work + 1)..num_act;
 
-array[activities] of var int: energy; %MOD
-array[works] of var int: work_duration; % MOD
-array[works] of var 0..9: priority; % MOD
+array[activities] of int: energy; %MOD
+array[works] of int: work_duration; % MOD
+array[works] of int: work_max_duration; % MOD
+array[works] of 0..9: priority; % MOD
 
 array[slots] of var activities: schedule;
 array[slots] of var int: energy_consumed;
@@ -34,7 +35,12 @@ constraint forall(i in slots)(
 
 % Enforces all the works to be finished
 constraint forall(i in works)(
-  count(schedule, i) = work_duration[i]
+  count(schedule, i) >= work_duration[i]
+);
+
+% Enforces all the works to be done as long as possible based on priority but not crossing max duration
+constraint forall(i in works)(
+  count(schedule, i) <= work_max_duration[i]
 );
 
 % Enforces all type of recreational activities to appear atleast once

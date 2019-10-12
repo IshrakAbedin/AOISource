@@ -19,7 +19,7 @@ There are two ways of running the Python bridge. First is running bridge.py dire
 
 **COMMAND LIST**:
 
-For adding work, `work/wrk workName totalWorkEnergy workDuration priority`
+For adding work, `work/wrk workName totalWorkEnergy workMinimumDuration workMaximumDuration priority`
 
 For adding recreational activity, `recr/rec recreationName perQuantaEnergyRestoration`
 
@@ -41,11 +41,11 @@ energy 80
 stime 06:00pm
 etime 12:00am
 quanta 15
-work cleaning 48 60 4
-work study 25 75 5
-work repair 51 45 2
-work cooking 20 30 3
-work project 30 15 2
+work cleaning 48 60 75 4
+work study 25 75 105 5
+work repair 51 45 45 2
+work cooking 20 30 30 3
+work project 30 15 45 2
 recr singing 30
 recr procastinating 45
 run

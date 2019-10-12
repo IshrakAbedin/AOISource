@@ -24,6 +24,7 @@ def input_system():
     works = []
     recrs = []
     duration = []
+    max_duration = []
     priority = []
     work_energy = []
     recr_energy = []
@@ -39,7 +40,8 @@ def input_system():
             works.append(inputs[1])
             work_energy.append(-1 * int(inputs[2]))
             duration.append(int(inputs[3]))
-            priority.append(int(inputs[4]))
+            max_duration.append(int(inputs[4]))
+            priority.append(int(inputs[5]))
         elif(inputs[0] == 'recr' or inputs[0] == 'rec'):
             recrs.append(inputs[1])
             recr_energy.append(int(inputs[2]))
@@ -59,6 +61,7 @@ def input_system():
             works = []
             recrs = []
             duration = []
+            max_duration = []
             priority = []
             work_energy = []
             recr_energy = []
@@ -78,6 +81,12 @@ def input_system():
         duration[i] = int(duration[i] / quanta)
         if duration[i] <= 0:
             duration[i] = 1
+    for i in range(len(max_duration)):
+        max_duration[i] = int(max_duration[i] / quanta)
+        if max_duration[i] <= 0:
+            max_duration[i] = 1
+        if max_duration[i] < duration[i]:
+            max_duration[i] = duration[i]
     for i in range(len(duration)):
         energies[i] = int(energies[i] / duration[i])
 
@@ -88,6 +97,7 @@ def input_system():
     data['starting_energy'] = starting_energy
     data['energy'] = energies
     data['work_duration'] = duration
+    data['work_max_duration'] = max_duration
     data['priority'] = priority
 
     return activities, data, quanta, stime
@@ -99,6 +109,7 @@ def read_system(inputfile):
     works = []
     recrs = []
     duration = []
+    max_duration=[]
     priority = []
     work_energy = []
     recr_energy = []
@@ -114,7 +125,8 @@ def read_system(inputfile):
             works.append(inputs[1])
             work_energy.append(-1 * int(inputs[2]))
             duration.append(int(inputs[3]))
-            priority.append(int(inputs[4]))
+            max_duration.append(int(inputs[4]))
+            priority.append(int(inputs[5]))
         elif(inputs[0] == '#' or inputs[0] == '%'):
             continue
         elif(inputs[0] == 'recr' or inputs[0] == 'rec'):
@@ -136,6 +148,7 @@ def read_system(inputfile):
             works = []
             recrs = []
             duration = []
+            max_duration = []
             priority = []
             work_energy = []
             recr_energy = []
@@ -154,6 +167,12 @@ def read_system(inputfile):
         duration[i] = int(duration[i] / quanta)
         if duration[i] <= 0:
             duration[i] = 1
+    for i in range(len(max_duration)):
+        max_duration[i] = int(max_duration[i] / quanta)
+        if max_duration[i] <= 0:
+            max_duration[i] = 1
+        if max_duration[i] < duration[i]:
+            max_duration[i] = duration[i]
     for i in range(len(duration)):
         energies[i] = int(energies[i] / duration[i])
 
@@ -164,6 +183,7 @@ def read_system(inputfile):
     data['starting_energy'] = starting_energy
     data['energy'] = energies
     data['work_duration'] = duration
+    data['work_max_duration'] = max_duration
     data['priority'] = priority
 
     return activities, data, quanta, stime

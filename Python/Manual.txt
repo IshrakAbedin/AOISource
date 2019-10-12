@@ -16,7 +16,7 @@ There are two ways of running the Python bridge. First is running bridge.py dire
 COMMAND LIST:
 
 For adding work,
-[work/wrk workName totalWorkEnergy workDuration priority]
+[work/wrk workName totalWorkEnergy workMinDuration workMaxDuration priority]
 
 For adding recreational activity,
 [recr/rec recreationName perQuantaEnergyRestoration]
