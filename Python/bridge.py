@@ -5,7 +5,8 @@ import webbrowser
 from os import path
 import flattime
 
-def format_mzn_solution(solution):
+def format_mzn_solution(solution : pymzn.mzn.minizinc) -> list:
+    """Extracts solution from raw string and then pushes each of the elements in a list"""
     solution = str(solution)
     index = solution.find('schedule') + 12
     processed_solution = ''
@@ -19,7 +20,8 @@ def format_mzn_solution(solution):
         solution_list[i] = int(solution_list[i])
     return solution_list
 
-def input_system():
+def input_system() -> (list, dict, int, str):
+    """Takes input from user if no commandline arguments are passed"""
     print('Enter your inputs')
     works = []
     recrs = []
@@ -102,7 +104,8 @@ def input_system():
 
     return activities, data, quanta, stime
 
-def read_system(inputfile):
+def read_system(inputfile : str) -> (list, dict, int, str):
+    """Reads inputs from inputfile if commandline argument is passed"""
     doc = open(inputfile, 'r')
     lines = doc.readlines()
     doc.close()
@@ -188,7 +191,8 @@ def read_system(inputfile):
 
     return activities, data, quanta, stime
 
-def comprehensive_output(tasklist, quanta):
+def comprehensive_output(tasklist : list, quanta : int):
+    """Output system without using prettytable"""
     if(len(tasklist) == 0):
         print('No task found')
         return
@@ -206,7 +210,8 @@ def comprehensive_output(tasklist, quanta):
             counter += 1
     print('-', lasttask, '\t', quanta * counter, 'minutes')
 
-def tabular_output(tasklist, quanta, stime):
+def tabular_output(tasklist : list, quanta : int, stime : str):
+    """Output system with prettytable and then html formatted to show using a web browser"""
     etime = ''
     if(len(tasklist) == 0):
         print('No task found')
@@ -244,19 +249,21 @@ def tabular_output(tasklist, quanta, stime):
     webbrowser.open('file://' + path.realpath('schedule.html'))
 
 def show_help():
-    print('Please read Manual.txt')
+    """Function to show help"""
+    print('Please read ReadMe.md or Manual.txt')
 
 def main():
+    """Main driver function"""
     activities = []
     data = {}
     quanta = 0
     stime = ''
-    if(len(argv) == 2 and str(argv[1]).find('.txt') > -1):
+    if(len(argv) == 2 and str(argv[1]).find('.txt') > -1): # If commandline arguments are detected, read input from the given input file
         activities, data, quanta, stime = read_system(str(argv[1]))
-    else:
+    else: # If commandline arguments are not found, ask user to give input
         activities, data, quanta, stime = input_system()
     print('Please wait while an AI solver tries to manage your schedule ... ...')
-    try:
+    try: # Tries to run the model with given data using CoinBC solver
         result = pymzn.minizinc('Routine.mzn', 'Null.dzn', data = data, solver = pymzn.cbc)
         schedule = format_mzn_solution(result)
     except(Exception):
@@ -266,9 +273,9 @@ def main():
         return
     tasklist = []
     for task in schedule:
-        tasklist.append(activities[task - 1])
+        tasklist.append(activities[task - 1]) # Prepares a task list
     # comprehensive_output(tasklist, quanta)
-    tabular_output(tasklist, quanta, stime)
+    tabular_output(tasklist, quanta, stime) # Displays output
     return
 
 main()
